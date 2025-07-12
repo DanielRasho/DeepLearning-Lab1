@@ -20,7 +20,13 @@
   in {
     devShells = forAllSystems (system: let
       pkgs = nixpkgsFor.${system};
-      python = pkgs.python3.withPackages (p: [p.jupyterlab]);
+      python = pkgs.python3.withPackages (p: [
+        p.jupyterlab
+        p.matplotlib
+        p.numpy
+        p.scipy
+        p.scikit-image
+      ]);
     in {
       default = pkgs.mkShell {
         packages = [pkgs.black python];
